@@ -1,0 +1,147 @@
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Home - Depann Mo Loto{% endblock %}
+
+{% block content %}
+<div class="landing-page">
+  <!-- Hero Section -->
+  <div class="section">
+    <div class="container-2">
+      <div class="div-wrapper-2"><p class="p">Professional Car Servicing and Maintenance</p></div>
+      <div class="container-3"><p class="text-wrapper-2">Quality Service you can trust</p></div>
+      <a href="{% url 'bookings:create' %}" class="button"><div class="text-wrapper-3">Book Service Now</div></a>
+    </div>
+  </div>
+
+  <!-- Services Section 1 -->
+  <div class="container-4">
+    <div class="div-wrapper-2"><div class="text-wrapper-4">Our Services</div></div>
+    <div class="container-5">
+      <div class="background">
+        <div class="heading"><div class="text-wrapper-5">Car Servicing</div></div>
+        <div class="container-6"><p class="text-wrapper-6">Complete vehicle maintenance and inspection</p></div>
+        <div class="container-wrapper">
+          <div class="container-7"><div class="text-wrapper-7">🔧</div></div>
+        </div>
+      </div>
+      <div class="background">
+        <div class="background-2">
+          <div class="container-7"><div class="text-wrapper-7">🔋</div></div>
+        </div>
+        <div class="heading"><div class="text-wrapper-5">Battery Check</div></div>
+        <div class="container-8"><p class="text-wrapper-8">Battery testing, charging, and replacement</p></div>
+      </div>
+      <div class="background">
+        <div class="heading"><div class="text-wrapper-5">Mechanical Repair</div></div>
+        <div class="container-8">
+          <p class="text-wrapper-9">Expert engine and mechanical component repairs</p>
+        </div>
+        <div class="background-3">
+          <div class="div-wrapper"><div class="text-wrapper-10">⚙️</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Services Section 2 -->
+  <div class="container-9">
+    <div class="background-4">
+      <div class="heading"><div class="text-wrapper-5">Tyre Replacement</div></div>
+      <div class="container-8"><p class="text-wrapper-11">Quality tyre installation and balancing services</p></div>
+      <div class="container-wrapper">
+        <div class="container-7"><div class="text-wrapper-7">🛞</div></div>
+      </div>
+    </div>
+    <div class="background-5">
+      <div class="heading"><div class="text-wrapper-5">AC Service</div></div>
+      <div class="container-8"><p class="text-wrapper-12">Tire installation, rotation, and replacement</p></div>
+      <div class="background-6">
+        <div class="div-wrapper"><div class="text-wrapper-10">❄️</div></div>
+      </div>
+    </div>
+    <div class="background-5">
+      <div class="heading"><div class="text-wrapper-5">Preventive Maintainance</div></div>
+      <div class="container-8">
+        <p class="precision-wheel">Regular servicing to prevent breakdowns<br />services</p>
+      </div>
+      <div class="background-3">
+        <div class="div-wrapper"><div class="text-wrapper-10">🎯</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Why Choose Us Section -->
+  <div class="section-2">
+    <div class="container-10">
+      <div class="div-wrapper-2"><p class="text-wrapper-4">Why Choose Depann Mo Loto?</p></div>
+      <div class="with-years-of-wrapper">
+        <p class="with-years-of">
+          With years of experience in automotive repair and maintenance, we provide reliable, professional
+          service to keep your vehicle running smoothly. Our certified technicians use the latest tools and
+          techniques to ensure quality results.
+        </p>
+      </div>
+      <div class="container-11">
+        <a href="{% url 'pages:about' %}" class="button-2"><div class="text-wrapper-3">Learn More</div></a>
+        <a href="{% url 'pages:contact' %}" class="button-3"><div class="text-wrapper-3">Contact Us</div></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Locations Section -->
+  <div class="section-3">
+    <div class="div-wrapper-2"><div class="text-wrapper-4">Our Locations</div></div>
+    <div class="container-12">
+      <div class="background-shadow">
+        <div class="background-7">
+          <div class="container-7"><div class="text-wrapper-5">📍</div></div>
+        </div>
+        <div class="div-wrapper-2">
+          <p class="text-wrapper-13"><br />21 Royal Road, Vacoas<br />(+230) 5434 5678</p>
+        </div>
+      </div>
+      <div class="background-shadow">
+        <div class="background-7">
+          <div class="container-7"><div class="text-wrapper-5">📍</div></div>
+        </div>
+        <div class="div-wrapper-2">
+          <p class="text-wrapper-13"><br />Jules Koenig, Port Louis<br />(+230) 5345 6789</p>
+        </div>
+      </div>
+      <div class="background-shadow">
+        <div class="background-7">
+          <div class="container-7"><div class="text-wrapper-5">📍</div></div>
+        </div>
+        <div class="div-wrapper-2">
+          <p class="text-wrapper-13"><br />78 Central Flacq, Flacq<br />(+230) 5456 7890</p>
+        </div>
+      </div>
+      <div class="background-shadow">
+        <div class="background-7">
+          <div class="container-7"><div class="text-wrapper-5">📍</div></div>
+        </div>
+        <div class="div-wrapper-2">
+          <p class="text-wrapper-13"><br />12 Main Road, Goodlands<br />(+230) 5567 8901</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer Content -->
+  <footer class="footer">
+    <div class="div-wrapper-2">
+      <p class="text-wrapper-9">© 2025 Depann Mo Loto. Professional car servicing across Mauritius.</p>
+    </div>
+  </footer>
+  
+  <!-- Operating Hours -->
+  <div class="mon-fri-AM-wrapper">
+    <p class="mon-fri-AM">
+      Mon-Fri: 8:00 AM - 5:00 PM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Sat: 9:00 AM - 1:00
+      PM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Sun: Closed
+    </p>
+  </div>
+</div>
+{% endblock %}
