@@ -1,8 +1,7 @@
 from django.shortcuts import render
 
-# Create your views here.
-
-def service_list(request):
+def services_list(request):
+    # For now, just render the template - we'll add data later
     return render(request, 'services/service_list.html')
 
 

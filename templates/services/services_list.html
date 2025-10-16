@@ -1,0 +1,160 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Our Services - Depann Mo Loto{% endblock %}
+
+{% block content %}
+<div class="services-page">
+    <!-- Main Services Section -->
+    <div class="screen">
+        <div class="main">
+            <div class="container-2">
+                <div class="heading"><div class="text-wrapper-2">Our Services</div></div>
+                <div class="professional-car-wrapper">
+                    <p class="p">
+                        Professional car servicing and repair services in Mauritius. Choose from our<br />comprehensive range of
+                        automotive solutions.
+                    </p>
+                </div>
+            </div>
+            <div class="container-3">
+                <!-- Car Servicing -->
+                <div class="background-border">
+                    <div class="container-4">
+                        <div class="div-wrapper"><div class="text-wrapper-3">Car Servicing</div></div>
+                        <div class="container-5">
+                            <p class="text-wrapper-4">
+                                Complete maintenance services like oil changes, filter replacements, and general inspections
+                                to keep your vehicle running smoothly.
+                            </p>
+                        </div>
+                        <div class="container-6"><div class="text-wrapper-5">From Rs 2,500</div></div>
+                    </div>
+                    <a href="{% url 'bookings:create' %}?service=car_servicing" class="button-3"><div class="text-wrapper-6">Book Now</div></a>
+                </div>
+
+                <!-- Mechanical Repair -->
+                <div class="background-border-2">
+                    <div class="container-4">
+                        <div class="div-wrapper"><div class="text-wrapper-3">Mechanical Repair</div></div>
+                        <div class="container-5">
+                            <p class="text-wrapper-4">
+                                Expert diagnostic and repair services for<br />engine problems, transmission issues, and<br />other
+                                mechanical components.
+                            </p>
+                        </div>
+                        <div class="container-6"><div class="text-wrapper-5">From Rs 1,500</div></div>
+                    </div>
+                    <a href="{% url 'bookings:create' %}?service=mechanical_repair" class="button-3"><div class="text-wrapper-6">Book Now</div></a>
+                </div>
+
+                <!-- Battery Check -->
+                <div class="background-border-3">
+                    <div class="container-4">
+                        <div class="div-wrapper"><div class="text-wrapper-3">Battery Check</div></div>
+                        <div class="container-5">
+                            <p class="text-wrapper-4">
+                                Comprehensive battery testing and<br />replacement services to ensure reliable<br />vehicle starting
+                                and electrical system<br />performance.
+                            </p>
+                        </div>
+                        <div class="container-6"><div class="text-wrapper-5">From Rs 800</div></div>
+                    </div>
+                    <a href="{% url 'bookings:create' %}?service=battery_check" class="button-3"><div class="text-wrapper-6">Book Now</div></a>
+                </div>
+
+                <!-- Tyre Replacement -->
+                <div class="background-border-4">
+                    <div class="container-4">
+                        <div class="div-wrapper"><div class="text-wrapper-3">Tyre Replacement</div></div>
+                        <div class="container-5">
+                            <p class="text-wrapper-4">
+                                Professional tyre installation, balancing, and alignment services with a wide selection of quality tyres for all vehicle types.
+                            </p>
+                        </div>
+                        <div class="container-6"><div class="text-wrapper-5">From Rs 3,000</div></div>
+                    </div>
+                    <a href="{% url 'bookings:create' %}?service=tyre_replacement" class="button-3"><div class="text-wrapper-6">Book Now</div></a>
+                </div>
+
+                <!-- AC Service -->
+                <div class="background-border-5">
+                    <div class="container-4">
+                        <div class="div-wrapper"><div class="text-wrapper-3">AC Service</div></div>
+                        <div class="container-5">
+                            <p class="text-wrapper-4">
+                                Air conditioning system diagnostics,cleaning, repair, and gas refilling to ensure optimal
+                                cooling performance.
+                            </p>
+                        </div>
+                        <div class="container-6"><div class="text-wrapper-5">From Rs 1,200</div></div>
+                    </div>
+                    <a href="{% url 'bookings:create' %}?service=ac_service" class="button-3"><div class="text-wrapper-6">Book Now</div></a>
+                </div>
+
+                <!-- Preventive Maintenance -->
+                <div class="background-border-6">
+                    <div class="container-4">
+                        <div class="div-wrapper"><div class="text-wrapper-3">Preventive Maintenance</div></div>
+                        <div class="container-5">
+                            <p class="text-wrapper-4">
+                                Regular servicing to prevent breakdowns, cleaning, lubrication, adjustments, calibration and
+                                software updates (for electronic /IT components).
+                            </p>
+                        </div>
+                        <div class="container-6"><div class="text-wrapper-5">From Rs 3,000</div></div>
+                    </div>
+                    <a href="{% url 'bookings:create' %}?service=preventive_maintenance" class="button-4"><div class="text-wrapper-6">Book Now</div></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Why Choose Us Section -->
+    <div class="background-shadow">
+        <div class="heading-2"><div class="text-wrapper-7">Why Choose Our Services?</div></div>
+        <div class="container-7">
+            <div class="container-8">
+                <div class="background">
+                    <div class="SVG">
+                        {% load static %}
+                        <img class="vector" src="{% static 'images/vector.svg' %}" alt="Certified Technicians" />
+                    </div>
+                </div>
+                <div class="heading-3"><div class="text-wrapper-8">Certified Technicians</div></div>
+                <div class="container-9">
+                    <p class="p">
+                        Our experienced mechanics are certified and<br />trained to handle all types of vehicle repairs.
+                    </p>
+                </div>
+            </div>
+            <div class="container-10">
+                <div class="background">
+                    <div class="SVG">
+                        {% load static %}
+                        <img class="vector" src="{% static 'images/vector-2.svg' %}" alt="Quick Service" />
+                    </div>
+                </div>
+                <div class="heading-3"><div class="text-wrapper-8">Quick Service</div></div>
+                <div class="container-9">
+                    <p class="p">
+                        Fast and efficient repair services to get you<br />back on the road as quickly as possible.
+                    </p>
+                </div>
+            </div>
+            <div class="container-8">
+                <div class="background">
+                    <div class="SVG">
+                        {% load static %}
+                        <img class="vector" src="{% static 'images/image.svg' %}" alt="Quality Guarantee" />
+                    </div>
+                </div>
+                <div class="heading-3"><div class="text-wrapper-8">Quality Guarantee</div></div>
+                <div class="container-9">
+                    <p class="p">All repairs come with our quality guarantee and<br />warranty for your peace of mind.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,10 +1,8 @@
-
 from django.urls import path
 from . import views
 
-app_name = 'services'
+app_name = 'services'  # This creates the 'services' namespace
 
 urlpatterns = [
-    path('', views.service_list, name='list'),
+    path('', views.services_list, name='list'),
 ]
-
