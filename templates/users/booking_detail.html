@@ -1,0 +1,541 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Booking #{{ booking.id }} - Depann Mo Loto{% endblock %}
+
+{% block content %}
+<style>
+.booking-detail-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+/* Detail Header */
+.detail-header {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.back-link {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.back-link:hover {
+    color: #0056b3;
+    text-decoration: none;
+    transform: translateX(-5px);
+}
+
+.detail-header h1 {
+    color: #333;
+    font-size: 32px;
+    font-weight: bold;
+    margin: 0;
+    flex: 1;
+}
+
+.booking-status {
+    display: inline-block;
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.booking-status.confirmed {
+    background: #d4edda;
+    color: #155724;
+    border: 2px solid #c3e6cb;
+}
+
+.booking-status.pending {
+    background: #fff3cd;
+    color: #856404;
+    border: 2px solid #ffeaa7;
+}
+
+.booking-status.completed {
+    background: #d1ecf1;
+    color: #0c5460;
+    border: 2px solid #bee5eb;
+}
+
+.booking-status.cancelled {
+    background: #f8d7da;
+    color: #721c24;
+    border: 2px solid #f5c6cb;
+}
+
+/* Detail Grid */
+.detail-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    margin-bottom: 40px;
+}
+
+.detail-card {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+    border-left: 4px solid #FFE597;
+}
+
+.detail-card.full-width {
+    grid-column: 1 / -1;
+}
+
+.detail-card h3 {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    border-bottom: 2px solid #f8f9fa;
+    padding-bottom: 10px;
+}
+
+/* Detail Items */
+.detail-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 12px 0;
+    border-bottom: 1px solid #f8f9fa;
+}
+
+.detail-item:last-child {
+    border-bottom: none;
+}
+
+.detail-item .label {
+    font-weight: 600;
+    color: #555;
+    font-size: 14px;
+    flex: 1;
+}
+
+.detail-item .value {
+    color: #333;
+    font-weight: 500;
+    font-size: 14px;
+    flex: 1;
+    text-align: right;
+}
+
+/* Special Requests */
+.detail-card.full-width p {
+    color: #666;
+    line-height: 1.6;
+    margin: 0;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border-left: 4px solid #007bff;
+    font-style: italic;
+}
+
+/* Button Styles */
+.detail-actions {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    padding: 30px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    flex-wrap: wrap;
+}
+
+.btn-primary {
+    padding: 15px 30px;
+    background: #FFE597;
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+    text-align: center;
+    min-width: 180px;
+}
+
+.btn-primary:hover {
+    background: #f2db80;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255,229,151,0.3);
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+}
+
+.btn-secondary {
+    padding: 15px 30px;
+    background: #6c757d;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: not-allowed;
+    display: inline-block;
+    text-align: center;
+    min-width: 180px;
+    opacity: 0.6;
+}
+
+.btn-secondary:hover {
+    background: #6c757d;
+    color: white;
+    text-decoration: none;
+    transform: none;
+    cursor: not-allowed;
+}
+
+.btn-danger {
+    padding: 15px 30px;
+    background: #dc3545;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: not-allowed;
+    display: inline-block;
+    text-align: center;
+    min-width: 180px;
+    opacity: 0.6;
+}
+
+.btn-danger:hover {
+    background: #dc3545;
+    color: white;
+    text-decoration: none;
+    transform: none;
+    cursor: not-allowed;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .booking-detail-container {
+        padding: 15px;
+    }
+    
+    .detail-header {
+        padding: 20px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    
+    .detail-header h1 {
+        font-size: 28px;
+        order: 2;
+    }
+    
+    .back-link {
+        order: 1;
+    }
+    
+    .booking-status {
+        order: 3;
+        align-self: flex-start;
+    }
+    
+    .detail-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .detail-card {
+        padding: 20px;
+    }
+    
+    .detail-actions {
+        padding: 20px;
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .btn-primary,
+    .btn-secondary,
+    .btn-danger {
+        width: 100%;
+        min-width: auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .detail-header,
+    .detail-card,
+    .detail-actions {
+        padding: 15px;
+    }
+    
+    .detail-header h1 {
+        font-size: 24px;
+    }
+    
+    .detail-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+    
+    .detail-item .value {
+        text-align: left;
+    }
+}
+
+/* Focus states for accessibility */
+.back-link:focus-visible {
+    outline: 2px solid #007bff;
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+
+.btn-primary:focus-visible {
+    outline: 2px solid #FFE597;
+    outline-offset: 2px;
+}
+
+.btn-secondary:focus-visible,
+.btn-danger:focus-visible {
+    outline: 2px solid #6c757d;
+    outline-offset: 2px;
+}
+
+/* Animation for cards */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.detail-header {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.detail-card {
+    animation: fadeInUp 0.6s ease-out 0.2s both;
+}
+
+.detail-card:nth-child(1) { animation-delay: 0.3s; }
+.detail-card:nth-child(2) { animation-delay: 0.4s; }
+.detail-card:nth-child(3) { animation-delay: 0.5s; }
+.detail-card.full-width { animation-delay: 0.6s; }
+
+.detail-actions {
+    animation: fadeInUp 0.6s ease-out 0.7s both;
+}
+
+/* Print Styles */
+@media print {
+    .detail-actions {
+        display: none;
+    }
+    
+    .back-link {
+        display: none;
+    }
+    
+    .booking-detail-container {
+        box-shadow: none;
+        border: 1px solid #ccc;
+    }
+}
+
+/* Status-specific styling */
+.booking-status {
+    position: relative;
+    overflow: hidden;
+}
+
+.booking-status::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    transition: left 0.5s ease;
+}
+
+.booking-status:hover::before {
+    left: 100%;
+}
+</style>
+
+<div class="booking-detail-container">
+    <div class="detail-header">
+        <a href="{% url 'users:dashboard' %}" class="back-link">
+            <span>←</span> Back to Dashboard
+        </a>
+        <h1>Booking #{{ booking.id }}</h1>
+        <div class="booking-status {{ booking.status }}">
+            {{ booking.get_status_display }}
+        </div>
+    </div>
+
+    <div class="detail-grid">
+        <div class="detail-card">
+            <h3>Service Details</h3>
+            <div class="detail-item">
+                <span class="label">Service:</span>
+                <span class="value">{{ booking.service.name }}</span>
+            </div>
+            <div class="detail-item">
+                <span class="label">Price:</span>
+                <span class="value">Rs {{ booking.service.price }}</span>
+            </div>
+            {% if booking.service.duration %}
+            <div class="detail-item">
+                <span class="label">Duration:</span>
+                <span class="value">{{ booking.service.duration }}</span>
+            </div>
+            {% endif %}
+        </div>
+
+        <div class="detail-card">
+            <h3>Vehicle Details</h3>
+            <div class="detail-item">
+                <span class="label">Vehicle:</span>
+                <span class="value">{{ booking.vehicle.year }} {{ booking.vehicle.make }} {{ booking.vehicle.model }}</span>
+            </div>
+            <div class="detail-item">
+                <span class="label">License Plate:</span>
+                <span class="value">{{ booking.vehicle.license_plate }}</span>
+            </div>
+            <div class="detail-item">
+                <span class="label">VIN:</span>
+                <span class="value">{{ booking.vehicle.vin|default:"Not provided" }}</span>
+            </div>
+        </div>
+
+        <div class="detail-card">
+            <h3>Appointment Details</h3>
+            <div class="detail-item">
+                <span class="label">Date:</span>
+                <span class="value">{{ booking.booking_date|date:"F j, Y" }}</span>
+            </div>
+            <div class="detail-item">
+                <span class="label">Time:</span>
+                <span class="value">{{ booking.preferred_time|time:"g:i A" }}</span>
+            </div>
+            <div class="detail-item">
+                <span class="label">Booked On:</span>
+                <span class="value">{{ booking.created_at|date:"M j, Y g:i A" }}</span>
+            </div>
+        </div>
+
+        {% if booking.special_requests %}
+        <div class="detail-card full-width">
+            <h3>Special Requests</h3>
+            <p>{{ booking.special_requests }}</p>
+        </div>
+        {% endif %}
+    </div>
+
+    <div class="detail-actions">
+        <a href="{% url 'bookings:booking_start' %}" class="btn-primary">Book Another Service</a>
+        <button class="btn-secondary" disabled>Modify Booking</button>
+        <button class="btn-danger" disabled>Cancel Booking</button>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Add print functionality
+    const style = document.createElement('style');
+    style.textContent = `
+        @media print {
+            .detail-actions { display: none !important; }
+            .back-link { display: none !important; }
+            .booking-detail-container { box-shadow: none !important; border: 1px solid #ccc !important; }
+        }
+    `;
+    document.head.appendChild(style);
+    
+    // Add status-specific enhancements
+    const statusElement = document.querySelector('.booking-status');
+    if (statusElement) {
+        // Add subtle animation to status badge
+        statusElement.addEventListener('mouseenter', function() {
+            this.style.transform = 'scale(1.05)';
+        });
+        
+        statusElement.addEventListener('mouseleave', function() {
+            this.style.transform = 'scale(1)';
+        });
+        
+        // Add status-specific icons (visual enhancement)
+        const statusText = this.textContent.trim().toLowerCase();
+        let statusIcon = '';
+        
+        switch(statusText) {
+            case 'confirmed':
+                statusIcon = '✓';
+                break;
+            case 'pending':
+                statusIcon = '⏳';
+                break;
+            case 'completed':
+                statusIcon = '✅';
+                break;
+            case 'cancelled':
+                statusIcon = '❌';
+                break;
+        }
+        
+        if (statusIcon) {
+            statusElement.innerHTML = `${statusIcon} ${statusElement.textContent}`;
+        }
+    }
+    
+    // Add hover effects to detail cards
+    const detailCards = document.querySelectorAll('.detail-card');
+    detailCards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-5px)';
+            this.style.boxShadow = '0 8px 25px rgba(0,0,0,0.1)';
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+            this.style.boxShadow = '0 4px 15px rgba(0,0,0,0.06)';
+        });
+    });
+});
+</script>
+{% endblock %}
