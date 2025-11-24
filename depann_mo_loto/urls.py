@@ -19,9 +19,11 @@ from django.urls import path, include
 from django.views.generic import TemplateView
 from django.conf import settings
 from django.conf.urls.static import static
+from bookings.admin_views import BookingCalendarView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('admin/booking-calendar/', BookingCalendarView.as_view(), name='booking_calendar'),
     path('', include('pages.urls')),
     path('services/', include('services.urls')), 
     path('bookings/', include('bookings.urls')),  
