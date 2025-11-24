@@ -1,0 +1,394 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Personal Details - Depann Mo Loto{% endblock %}
+
+{% block content %}
+<style>
+.booking-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+/* Progress Bar Styles - CONSISTENT WITH PREVIOUS FRAMES */
+.booking-progress {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.progress-step {
+    padding: 10px 20px;
+    margin: 0 10px;
+    background: #e9ecef;
+    border-radius: 20px;
+    font-weight: bold;
+    color: #6c757d;
+}
+
+.progress-step.completed {
+    background: #28a745;
+    color: white;
+}
+
+.progress-step.active {
+    background: #FFE597;
+    color: rgb(0, 0, 0);
+}
+
+/* Main Form Styles */
+.booking-form {
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.booking-form h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 35px;
+    font-size: 32px;
+    font-weight: bold;
+}
+
+/* Error Message Styling */
+.error-message {
+    background: #f8d7da;
+    color: #721c24;
+    padding: 15px 20px;
+    border: 1px solid #f5c6cb;
+    border-radius: 8px;
+    margin-bottom: 25px;
+    font-weight: 500;
+}
+
+.field-error {
+    color: #dc3545;
+    font-size: 14px;
+    margin-top: 6px;
+    font-weight: 500;
+}
+
+/* Form Layout */
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 8px;
+    font-size: 16px;
+}
+
+.form-group input {
+    padding: 14px 16px;
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    background: #f8f9fa;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #FFE597;
+    box-shadow: 0 0 0 3px rgba(255,229,151,0.3);
+    background: white;
+}
+
+.form-group input:hover {
+    border-color: #adb5bd;
+}
+
+/* Error State Styling */
+.form-group input.error-field {
+    border-color: #dc3545;
+    background-color: #fff5f5;
+}
+
+/* Password Field Specific Styling */
+.form-group input[type="password"] {
+    font-family: Arial, sans-serif;
+    letter-spacing: 0.5px;
+}
+
+/* Button Styles */
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 40px;
+    padding-top: 30px;
+    border-top: 1px solid #e9ecef;
+}
+
+.btn-secondary {
+    padding: 14px 30px;
+    background: #6c757d;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.btn-secondary:hover {
+    background: #545b62;
+    color: white;
+    text-decoration: none;
+    transform: translateY(-1px);
+}
+
+.btn-primary {
+    padding: 15px 30px;
+    background: #FFE597;
+    color: rgb(0, 0, 0);
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.btn-primary:hover {
+    background: #f2db80;
+    transform: translateY(-1px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .booking-container {
+        padding: 15px;
+    }
+    
+    .booking-progress {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .booking-form {
+        padding: 25px;
+    }
+    
+    .booking-form h2 {
+        font-size: 28px;
+        margin-bottom: 25px;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+    
+    .form-actions {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .btn-secondary,
+    .btn-primary {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .booking-form {
+        padding: 20px 15px;
+    }
+    
+    .form-group input {
+        padding: 12px 14px;
+    }
+}
+
+/* Focus states for accessibility */
+.form-group input:focus-visible {
+    outline: 2px solid #FFE597;
+    outline-offset: 2px;
+}
+
+/* Success state for completed fields */
+.form-group input:valid:not(:focus):not(.error-field) {
+    border-color: #28a745;
+    background-color: #f8fff9;
+}
+
+/* Password strength indicator placeholder */
+.password-strength {
+    margin-top: 5px;
+    font-size: 14px;
+    color: #6c757d;
+}
+
+/* Form section spacing */
+.form-section {
+    margin-bottom: 30px;
+}
+
+.form-section:last-of-type {
+    margin-bottom: 0;
+}
+</style>
+
+<div class="booking-container">
+    <!-- Progress Bar - CONSISTENT WITH PREVIOUS FRAMES -->
+    <div class="booking-progress">
+        <div class="progress-step completed">1. Service Selection</div>
+        <div class="progress-step completed">2. Vehicle Details</div>
+        <div class="progress-step completed">3. Date & Time</div>
+        <div class="progress-step active">4. Personal Details</div>
+    </div>
+    
+    <!-- Personal Details Form -->
+    <div class="booking-form">
+        <h2>Create Your Account</h2>
+        
+        {% if error %}
+        <div class="error-message">
+            {{ error }}
+        </div>
+        {% endif %}
+        
+        <form method="post">
+            {% csrf_token %}
+            
+            {% if form.non_field_errors %}
+            <div class="error-message">
+                {% for error in form.non_field_errors %}
+                {{ error }}
+                {% endfor %}
+            </div>
+            {% endif %}
+            
+            <div class="form-section">
+                <div class="form-row">
+                    <div class="form-group">
+                        {{ form.first_name.label_tag }}
+                        {{ form.first_name }}
+                        {% if form.first_name.errors %}
+                        <div class="field-error">{{ form.first_name.errors|striptags }}</div>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="form-group">
+                        {{ form.last_name.label_tag }}
+                        {{ form.last_name }}
+                        {% if form.last_name.errors %}
+                        <div class="field-error">{{ form.last_name.errors|striptags }}</div>
+                        {% endif %}
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    {{ form.email.label_tag }}
+                    {{ form.email }}
+                    {% if form.email.errors %}
+                    <div class="field-error">{{ form.email.errors|striptags }}</div>
+                    {% endif %}
+                </div>
+                
+                <div class="form-group">
+                    {{ form.phone.label_tag }}
+                    {{ form.phone }}
+                    {% if form.phone.errors %}
+                    <div class="field-error">{{ form.phone.errors|striptags }}</div>
+                    {% endif %}
+                </div>
+            </div>
+            
+            <div class="form-section">
+                <div class="form-group">
+                    {{ form.password1.label_tag }}
+                    {{ form.password1 }}
+                    {% if form.password1.errors %}
+                    <div class="field-error">{{ form.password1.errors|striptags }}</div>
+                    {% endif %}
+                </div>
+                
+                <div class="form-group">
+                    {{ form.password2.label_tag }}
+                    {{ form.password2 }}
+                    {% if form.password2.errors %}
+                    <div class="field-error">{{ form.password2.errors|striptags }}</div>
+                    {% endif %}
+                </div>
+            </div>
+            
+            <div class="form-actions">
+                <a href="{% url 'bookings:datetime_selection' %}" class="btn-secondary">Back</a>
+                <button type="submit" class="btn-primary">Complete Booking</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Add error class to fields with errors
+    const formGroups = document.querySelectorAll('.form-group');
+    formGroups.forEach(group => {
+        const errorDiv = group.querySelector('.field-error');
+        if (errorDiv) {
+            const input = group.querySelector('input');
+            if (input) {
+                input.classList.add('error-field');
+            }
+        }
+    });
+    
+    // Add focus effects
+    const inputs = document.querySelectorAll('input');
+    inputs.forEach(input => {
+        input.addEventListener('focus', function() {
+            this.parentElement.classList.add('focused');
+        });
+        
+        input.addEventListener('blur', function() {
+            this.parentElement.classList.remove('focused');
+        });
+    });
+    
+    // Real-time validation feedback
+    inputs.forEach(input => {
+        input.addEventListener('input', function() {
+            if (this.value.trim() !== '' && !this.classList.contains('error-field')) {
+                this.style.borderColor = '#28a745';
+                this.style.backgroundColor = '#f8fff9';
+            } else if (this.classList.contains('error-field')) {
+                this.style.borderColor = '#dc3545';
+                this.style.backgroundColor = '#fff5f5';
+            } else {
+                this.style.borderColor = '#e9ecef';
+                this.style.backgroundColor = '#f8f9fa';
+            }
+        });
+    });
+});
+</script>
+{% endblock %}
+
