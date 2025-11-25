@@ -1,0 +1,105 @@
+{% extends "admin/base_site.html" %}
+{% load booking_tags %}
+
+{% block content %}
+<div class="calendar-navigation">
+    <h1>Booking Calendar - {{ month_name }} {{ year }}</h1>
+    <div class="calendar-controls">
+        <a href="?year={{ prev_year }}&month={{ prev_month }}" class="button">← Previous Month</a>
+        <a href="?year={{ next_year }}&month={{ next_month }}" class="button">Next Month →</a>
+        <a href="{% url 'admin:bookings_booking_changelist' %}" class="button">List View</a>
+    </div>
+</div>
+
+<table class="booking-calendar">
+    <thead>
+        <tr>
+            <th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th><th>Sun</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for week in calendar %}
+        <tr>
+            {% for day in week %}
+            <td class="{% if day == 0 %}empty{% else %}day{% endif %}">
+                {% if day != 0 %}
+                <div class="day-number">{{ day }}</div>
+                {% with date_key=year|stringformat:"d"|add:"-"|add:month|stringformat:"02d"|add:"-"|add:day|stringformat:"02d" %}
+                    {% with bookings=bookings_by_date|get_item:date_key %}
+                        {% if bookings %}
+                        <div class="bookings">
+                            {% for booking in bookings %}
+                            <div class="booking-item status-{{ booking.status }}">
+                                <strong>{{ booking.service.name }}</strong>
+                                <br>{{ booking.vehicle.make }} {{ booking.vehicle.model }}
+                                <br>{{ booking.preferred_time|time:"H:i" }}
+                            </div>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                    {% endwith %}
+                {% endwith %}
+                {% endif %}
+            </td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<style>
+.booking-calendar {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+.booking-calendar th {
+    background: #417690;
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+.booking-calendar td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    vertical-align: top;
+    height: 120px;
+    width: 14.28%;
+}
+.booking-calendar .empty {
+    background: #f9f9f9;
+}
+.booking-calendar .day-number {
+    font-weight: bold;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+.booking-item {
+    font-size: 11px;
+    padding: 3px;
+    margin: 2px 0;
+    border-radius: 3px;
+    border-left: 3px solid;
+}
+.status-pending { background: #fff3cd; border-color: #ffc107; }
+.status-confirmed { background: #d1ecf1; border-color: #0dcaf0; }
+.status-in_progress { background: #e0f7fa; border-color: #00bcd4; }
+.status-completed { background: #d4edda; border-color: #28a745; }
+.status-cancelled { background: #f8d7da; border-color: #dc3545; }
+.calendar-controls {
+    margin: 15px 0;
+}
+.calendar-controls .button {
+    background: #417690;
+    color: white;
+    padding: 8px 15px;
+    text-decoration: none;
+    border-radius: 4px;
+    margin-right: 10px;
+    display: inline-block;
+}
+.calendar-controls .button:hover {
+    background: #305067;
+}
+</style>
+{% endblock %}
