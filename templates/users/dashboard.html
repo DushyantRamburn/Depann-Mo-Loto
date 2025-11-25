@@ -1,0 +1,630 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Dashboard - Depann Mo Loto{% endblock %}
+
+{% block content %}
+<style>
+.dashboard-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+/* Dashboard Header */
+.dashboard-header {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    margin-bottom: 30px;
+}
+
+.dashboard-header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.dashboard-header h1 {
+    color: #333;
+    font-size: 32px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.dashboard-header p {
+    color: #666;
+    font-size: 16px;
+    margin: 0;
+}
+
+/* Dashboard Grid */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 25px;
+    margin-bottom: 40px;
+}
+
+.dashboard-card {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+    border-left: 4px solid #FFE597;
+}
+
+.dashboard-card h3 {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    border-bottom: 2px solid #f8f9fa;
+    padding-bottom: 10px;
+}
+
+/* Profile Information */
+.profile-info {
+    margin-bottom: 20px;
+}
+
+.info-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #f8f9fa;
+}
+
+.info-item:last-child {
+    border-bottom: none;
+}
+
+.info-item .label {
+    font-weight: 600;
+    color: #555;
+    font-size: 14px;
+}
+
+.info-item .value {
+    color: #333;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+/* Booking Items */
+.booking-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid #f8f9fa;
+}
+
+.booking-item:last-child {
+    border-bottom: none;
+}
+
+.booking-info strong {
+    color: #333;
+    font-size: 15px;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.booking-meta {
+    color: #666;
+    font-size: 13px;
+    margin-bottom: 8px;
+}
+
+.booking-status {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.booking-status.confirmed {
+    background: #d4edda;
+    color: #155724;
+}
+
+.booking-status.pending {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.booking-status.completed {
+    background: #d1ecf1;
+    color: #0c5460;
+}
+
+.booking-status.cancelled {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+/* Vehicle Items */
+.vehicle-item {
+    padding: 15px 0;
+    border-bottom: 1px solid #f8f9fa;
+}
+
+.vehicle-item:last-child {
+    border-bottom: none;
+}
+
+.vehicle-info strong {
+    color: #333;
+    font-size: 15px;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.vehicle-meta {
+    color: #666;
+    font-size: 13px;
+}
+
+/* Button Styles */
+.btn-logout {
+    padding: 10px 20px;
+    background: #dc3545;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.btn-logout:hover {
+    background: #c82333;
+    color: white;
+    text-decoration: none;
+    transform: translateY(-1px);
+}
+
+.btn-primary {
+    padding: 12px 24px;
+    background: #FFE597;
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+    text-align: center;
+}
+
+.btn-primary:hover {
+    background: #f2db80;
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    transform: translateY(-1px);
+}
+
+.btn-secondary {
+    padding: 10px 20px;
+    background: #6c757d;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+    text-align: center;
+}
+
+.btn-secondary:hover {
+    background: #545b62;
+    color: white;
+    text-decoration: none;
+    transform: translateY(-1px);
+}
+
+.btn-small {
+    padding: 6px 12px;
+    background: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.btn-small:hover {
+    background: #0056b3;
+    color: white;
+    text-decoration: none;
+    transform: translateY(-1px);
+}
+
+/* View All Links */
+.view-all {
+    text-align: center;
+    padding-top: 15px;
+    margin-top: 15px;
+    border-top: 1px solid #f8f9fa;
+}
+
+.view-all a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    transition: color 0.3s ease;
+}
+
+.view-all a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+/* No Data States */
+.no-data {
+    color: #666;
+    font-style: italic;
+    text-align: center;
+    padding: 20px 0;
+    margin: 0;
+}
+
+/* Recent Bookings Section */
+.dashboard-section {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    margin-bottom: 30px;
+}
+
+.dashboard-section h2 {
+    color: #333;
+    margin-bottom: 25px;
+    font-size: 24px;
+    font-weight: bold;
+    border-bottom: 2px solid #f8f9fa;
+    padding-bottom: 10px;
+}
+
+.bookings-table {
+    display: table;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.booking-row {
+    display: table-row;
+    border-bottom: 1px solid #f8f9fa;
+    transition: background-color 0.3s ease;
+}
+
+.booking-row:hover {
+    background-color: #f8f9fa;
+}
+
+.booking-cell {
+    display: table-cell;
+    padding: 15px 10px;
+    vertical-align: middle;
+}
+
+.booking-cell:first-child {
+    padding-left: 0;
+}
+
+.booking-cell:last-child {
+    padding-right: 0;
+    text-align: right;
+}
+
+.booking-cell strong {
+    color: #333;
+}
+
+.status {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.status.confirmed { background: #d4edda; color: #155724; }
+.status.pending { background: #fff3cd; color: #856404; }
+.status.completed { background: #d1ecf1; color: #0c5460; }
+.status.cancelled { background: #f8d7da; color: #721c24; }
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .dashboard-container {
+        padding: 15px;
+    }
+    
+    .dashboard-header {
+        padding: 20px;
+    }
+    
+    .dashboard-header-top {
+        flex-direction: column;
+        gap: 15px;
+        align-items: flex-start;
+    }
+    
+    .dashboard-header h1 {
+        font-size: 28px;
+    }
+    
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .dashboard-card {
+        padding: 20px;
+    }
+    
+    .dashboard-section {
+        padding: 20px;
+    }
+    
+    .booking-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .booking-item .btn-small {
+        align-self: flex-end;
+    }
+    
+    .bookings-table {
+        display: block;
+    }
+    
+    .booking-row {
+        display: flex;
+        flex-direction: column;
+        padding: 15px;
+        border: 1px solid #e9ecef;
+        border-radius: 8px;
+        margin-bottom: 10px;
+    }
+    
+    .booking-cell {
+        display: flex;
+        justify-content: space-between;
+        padding: 8px 0;
+        border-bottom: 1px solid #f8f9fa;
+    }
+    
+    .booking-cell:last-child {
+        border-bottom: none;
+        justify-content: flex-end;
+        padding-top: 15px;
+    }
+    
+    .booking-cell::before {
+        content: attr(data-label);
+        font-weight: 600;
+        color: #555;
+    }
+}
+
+@media (max-width: 480px) {
+    .dashboard-header,
+    .dashboard-card,
+    .dashboard-section {
+        padding: 15px;
+    }
+    
+    .info-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+}
+
+/* Focus states for accessibility */
+.btn-logout:focus-visible,
+.btn-primary:focus-visible,
+.btn-secondary:focus-visible,
+.btn-small:focus-visible,
+.view-all a:focus-visible {
+    outline: 2px solid #FFE597;
+    outline-offset: 2px;
+}
+
+/* Animation for cards */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.dashboard-card {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.dashboard-card:nth-child(1) { animation-delay: 0.1s; }
+.dashboard-card:nth-child(2) { animation-delay: 0.2s; }
+.dashboard-card:nth-child(3) { animation-delay: 0.3s; }
+
+.dashboard-section {
+    animation: fadeInUp 0.6s ease-out 0.4s both;
+}
+</style>
+
+<div class="dashboard-container">
+    <div class="dashboard-header">
+        <div class="dashboard-header-top">
+            <h1>Welcome, {{ user.first_name }}!</h1>
+            <a href="{% url 'users:logout' %}" class="btn-logout">Logout</a>
+        </div>
+        <p>Manage your bookings and vehicles</p>
+    </div>
+
+    <div class="dashboard-grid">
+        <!-- Profile Summary -->
+        <div class="dashboard-card">
+            <h3>Profile Information</h3>
+            <div class="profile-info">
+                <div class="info-item">
+                    <span class="label">Name:</span>
+                    <span class="value">{{ user.first_name }} {{ user.last_name }}</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Email:</span>
+                    <span class="value">{{ user.email }}</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Member Since:</span>
+                    <span class="value">{{ user.date_joined|date:"M j, Y" }}</span>
+                </div>
+            </div>
+            <a href="#" class="btn-secondary" style="width: 100%; display: block; text-align: center;">Edit Profile</a>
+        </div>
+
+        <!-- Upcoming Appointments -->
+        <div class="dashboard-card">
+            <h3>Upcoming Appointments</h3>
+            {% if upcoming_bookings %}
+                {% for booking in upcoming_bookings|slice:":3" %}
+                <div class="booking-item">
+                    <div class="booking-info">
+                        <strong>{{ booking.service.name }}</strong>
+                        <div class="booking-meta">
+                            {{ booking.booking_date|date:"M j, Y" }} at {{ booking.preferred_time|time:"g:i A" }}
+                        </div>
+                        <div class="booking-status {{ booking.status }}">
+                            {{ booking.get_status_display }}
+                        </div>
+                    </div>
+                    <a href="{% url 'users:booking_detail' booking.id %}" class="btn-small">View Details</a>
+                </div>
+                {% endfor %}
+                {% if upcoming_bookings|length > 3 %}
+                <div class="view-all">
+                    <a href="#all-bookings">View all {{ upcoming_bookings|length }} upcoming bookings</a>
+                </div>
+                {% endif %}
+            {% else %}
+                <p class="no-data">No upcoming appointments</p>
+                <a href="{% url 'bookings:create' %}" class="btn-primary" style="width: 100%; display: block; text-align: center;">Book a Service</a>
+            {% endif %}
+        </div>
+
+        <!-- Your Vehicles -->
+        <div class="dashboard-card">
+            <h3>Your Vehicles</h3>
+            {% if vehicles %}
+                {% for vehicle in vehicles|slice:":2" %}
+                <div class="vehicle-item">
+                    <div class="vehicle-info">
+                        <strong>{{ vehicle.year }} {{ vehicle.make }} {{ vehicle.model }}</strong>
+                        <div class="vehicle-meta">
+                            {{ vehicle.license_plate }} • {{ vehicle.get_vehicle_type_display }}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                {% if vehicles|length > 2 %}
+                <div class="view-all">
+                    <a href="#vehicles">View all {{ vehicles|length }} vehicles</a>
+                </div>
+                {% endif %}
+            {% else %}
+                <p class="no-data">No vehicles added yet</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Recent Bookings Section -->
+    <div class="dashboard-section" id="all-bookings">
+        <h2>Recent Bookings</h2>
+        {% if past_bookings %}
+        <div class="bookings-table">
+            {% for booking in past_bookings|slice:":10" %}
+            <div class="booking-row">
+                <div class="booking-cell" data-label="Booking ID">
+                    <strong>#{{ booking.id }}</strong>
+                </div>
+                <div class="booking-cell" data-label="Service">
+                    {{ booking.service.name }}
+                </div>
+                <div class="booking-cell" data-label="Date">
+                    {{ booking.booking_date|date:"M j, Y" }}
+                </div>
+                <div class="booking-cell" data-label="Status">
+                    <span class="status {{ booking.status }}">{{ booking.get_status_display }}</span>
+                </div>
+                <div class="booking-cell" data-label="Actions">
+                    <a href="{% url 'users:booking_detail' booking.id %}" class="btn-small">View</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <p class="no-data">No past bookings found</p>
+        {% endif %}
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Add smooth scrolling for view all links
+    const viewAllLinks = document.querySelectorAll('.view-all a[href^="#"]');
+    viewAllLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                targetElement.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+    
+    // Add hover effects to booking rows
+    const bookingRows = document.querySelectorAll('.booking-row');
+    bookingRows.forEach(row => {
+        row.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateX(5px)';
+        });
+        
+        row.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateX(0)';
+        });
+    });
+});
+</script>
+{% endblock %}
