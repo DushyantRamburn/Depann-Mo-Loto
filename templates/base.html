@@ -20,11 +20,20 @@
 
 
 <body>
-    <!-- 🔔 Notification Banner -->
-    <div class="notification-banner">
-        <span>🚗 Get 10% OFF your first service booking! Limited time offer.</span>
-        <button class="close-banner">✖</button>
+    <div id="promo-banner" class="promo-banner">
+        <span class="banner-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="white">
+                <path d="M5 11l1-5h12l1 5H5zm-2 2h18v2h-1a2 2 0 0 1-4 0H8a2 2 0 0 1-4 0H3v-2zm3 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm12 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+            </svg>
+        </span>
+
+        <span class="banner-text">
+            Get 10% OFF your first service booking! Limited time offer.
+        </span>
+
+        <span class="close-banner">&times;</span>
     </div>
+
 
     <div class="site-wrapper">
         <!-- Navigation Bar - Exact Figma Specifications -->
@@ -59,5 +68,22 @@
     </div>
 
     <script src="{% static 'js/main.js' %}"></script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const banner = document.getElementById("promo-banner");
+    const closeBtn = document.querySelector(".close-banner");
+
+    if (closeBtn && banner) {
+        closeBtn.addEventListener("click", () => {
+            banner.classList.add("banner-hidden");
+
+            setTimeout(() => {
+                banner.style.display = "none";
+            }, 500);
+        });
+    }
+});
+</script>
+
 </body>
 </html>
