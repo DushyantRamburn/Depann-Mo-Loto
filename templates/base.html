@@ -12,7 +12,20 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 
+<script>
+  document.querySelector('.close-banner').addEventListener('click', function() {
+    document.querySelector('.notification-banner').style.display = 'none';
+  });
+</script>
+
+
 <body>
+    <!-- 🔔 Notification Banner -->
+    <div class="notification-banner">
+        <span>🚗 Get 10% OFF your first service booking! Limited time offer.</span>
+        <button class="close-banner">✖</button>
+    </div>
+
     <div class="site-wrapper">
         <!-- Navigation Bar - Exact Figma Specifications -->
         <nav class="nav">
