@@ -27,7 +27,9 @@ urlpatterns = [
     path('', include('pages.urls')),
     path('services/', include('services.urls')), 
     path('bookings/', include('bookings.urls')),  
-    path('users/', include('users.urls')),        
+    path('users/', include('users.urls')),  
+    
+    path('api/', include('depann_mo_loto.api_urls')),      
 ]
 
 # Serve media files in development
