@@ -17,7 +17,7 @@ class VehicleForm(forms.ModelForm):
         widgets = {
             'make': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'e.g., Toyota'}),
             'model': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'e.g., Corolla'}),
-            'year': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'e.g., 2020', 'min': '1990', 'max': '2030'}),
+            'year': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'e.g., 2020', 'min': '1990', 'max': '2025'}),
             'license_plate': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'e.g., AB12345'}),
             'vehicle_type': forms.Select(attrs={'class': 'form-control'}),
             'vin': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Optional VIN number'}),

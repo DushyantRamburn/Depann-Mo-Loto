@@ -25,7 +25,7 @@ def booking_start(request):
             request.session['booking_data'] = {
                 'service_id': service_id
             }
-            return redirect('bookings:vehicle_details')
+        return redirect('bookings:vehicle_details')
     else:
         form = ServiceSelectionForm(initial={'service': initial_service} if initial_service else None)
         form.fields['service'].queryset = Service.objects.all()  # Show all services
