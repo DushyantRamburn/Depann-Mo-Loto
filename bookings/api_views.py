@@ -5,11 +5,12 @@ from .models import Booking, Vehicle
 from .serializers import BookingSerializer, VehicleSerializer
 from services.models import Service
 from django.contrib.auth import get_user_model
+from datetime import datetime
+from django.utils import timezone
 
 User = get_user_model()
 
 class UserBookingsAPI(generics.ListAPIView):
-    """Get all bookings for the logged-in user"""
     serializer_class = BookingSerializer
     permission_classes = [permissions.IsAuthenticated]
 
@@ -17,7 +18,6 @@ class UserBookingsAPI(generics.ListAPIView):
         return Booking.objects.filter(user=self.request.user).order_by('-booking_date')
 
 class CreateBookingAPI(APIView):
-    """Create a new booking from the mobile app"""
     permission_classes = [permissions.IsAuthenticated]
 
     def post(self, request):
@@ -34,11 +34,19 @@ class CreateBookingAPI(APIView):
                     'vehicle_type': data.get('vehicle_type', 'car'),
                 }
             )
+            # Parse the datetime string
+            booking_datetime = datetime.strptime(
+                data['booking_date'], '%Y-%m-%d %H:%M:%S'
+            )
+            # Make it timezone-aware
+            booking_datetime = timezone.make_aware(booking_datetime)
+
             booking = Booking.objects.create(
                 user=request.user,
                 vehicle=vehicle,
                 service=service,
-                booking_date=data['booking_date'],
+                booking_date=booking_datetime,
+                preferred_time=booking_datetime.time(),
                 status='pending'
             )
             return Response(BookingSerializer(booking).data, status=status.HTTP_201_CREATED)
@@ -46,9 +54,12 @@ class CreateBookingAPI(APIView):
             return Response({'error': 'Service not found'}, status=status.HTTP_404_NOT_FOUND)
         except KeyError as e:
             return Response({'error': f'Missing field: {e}'}, status=status.HTTP_400_BAD_REQUEST)
+        except ValueError as e:
+            return Response({'error': f'Invalid date format: {e}'}, status=status.HTTP_400_BAD_REQUEST)
+        except Exception as e:
+            return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
 class CancelBookingAPI(APIView):
-    """Cancel a booking"""
     permission_classes = [permissions.IsAuthenticated]
 
     def patch(self, request, pk):
