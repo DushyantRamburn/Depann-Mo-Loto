@@ -29,8 +29,15 @@ class RegisterAPI(APIView):
 
     def post(self, request):
         data = request.data
+        User = get_user_model()
+        
+        # If user already exists, return error
         if User.objects.filter(email=data.get('email')).exists():
-            return Response({'error': 'Email already registered'}, status=status.HTTP_400_BAD_REQUEST)
+            return Response(
+                {'error': 'Email already registered'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        
         user = User.objects.create_user(
             username=data['email'],
             email=data['email'],
