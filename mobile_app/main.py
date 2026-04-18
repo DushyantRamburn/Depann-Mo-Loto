@@ -38,4 +38,4 @@ def main(page: ft.Page):
 
     navigate("home")
 
-ft.app(target=main, view="web_browser")
+ft.run(main)
