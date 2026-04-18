@@ -93,6 +93,56 @@ def ContactScreen(page, api, state, navigate):
 
     render_branches()
 
+    # Map container — opens OpenStreetMap in browser on click
+    map_container = ft.Container(
+        content=ft.Column([
+            ft.Text("🗺️  Branch Locations Map", size=14,
+                    weight=ft.FontWeight.BOLD, color="white",
+                    text_align=ft.TextAlign.CENTER),
+            ft.Container(height=8),
+            ft.Container(
+                content=ft.Column([
+                    ft.Text("🗺️", size=50, text_align=ft.TextAlign.CENTER),
+                    ft.Text("View All Branches on Map", size=14,
+                            color="#FFE597", weight=ft.FontWeight.BOLD,
+                            text_align=ft.TextAlign.CENTER),
+                    ft.Text("Tap the button below to open\nthe map in your browser",
+                            size=11, color="#AAAAAA",
+                            text_align=ft.TextAlign.CENTER),
+                    ft.Container(height=10),
+                    ft.ElevatedButton(
+                        "🗺️  Open Map",
+                        url=(
+                            "https://www.google.com/maps/dir/"
+                            "-20.3176,57.4845/"
+                            "-20.1654,57.4896/"
+                            "-20.1833,57.7167/"
+                            "-19.9833,57.6500/"
+                        ),
+                        style=ft.ButtonStyle(
+                            bgcolor="#FFE597", color="#000000",
+                            shape=ft.RoundedRectangleBorder(radius=25),
+                        ),
+                        width=220,
+                    ),
+                    ft.Text(
+                        "📍 Vacoas  📍 Port Louis  📍 Flacq  📍 Goodlands",
+                        size=11, color="#AAAAAA",
+                        text_align=ft.TextAlign.CENTER,
+                    ),
+                ], horizontal_alignment=ft.CrossAxisAlignment.CENTER, spacing=6),
+                bgcolor="#2A2A4A",
+                border_radius=10,
+                padding=20,
+            ),
+        ], horizontal_alignment=ft.CrossAxisAlignment.CENTER),
+        bgcolor="#1E1E3A",
+        border_radius=12,
+        padding=16,
+        margin=ft.margin.symmetric(horizontal=16, vertical=8),
+        border=ft.border.all(1, "#333355"),
+    )
+
     hours_card = ft.Container(
         content=ft.Column([
             ft.Text("🕐  Business Hours", size=16,
@@ -139,7 +189,6 @@ def ContactScreen(page, api, state, navigate):
                 ft.Container(height=16),
                 ft.Divider(color="#333355"),
                 ft.Container(height=12),
-                # GPS button inside same container
                 ft.ElevatedButton(
                     "📍  Find Nearest Branch",
                     on_click=get_location,
@@ -169,6 +218,7 @@ def ContactScreen(page, api, state, navigate):
         ft.Container(height=8),
         branch_list,
         ft.Container(height=8),
+        map_container,
         hours_card,
         ft.Container(height=16),
         NavBar(page, navigate, active="contact"),
