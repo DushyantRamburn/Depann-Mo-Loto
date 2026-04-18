@@ -157,7 +157,7 @@ def DashboardScreen(page, api, state, navigate):
             border=ft.border.all(1, "#333355"),
         ),
 
-        # My Bookings title - centered, no container
+        # My Bookings title
         ft.Container(
             content=ft.Column([
                 ft.Text("My Bookings", size=20, weight=ft.FontWeight.BOLD,
@@ -174,17 +174,21 @@ def DashboardScreen(page, api, state, navigate):
 
         ft.Container(height=8),
         ft.Container(
-            content=ft.ElevatedButton(
-                "🔧  Book a New Service",
-                on_click=lambda e: navigate("services"),
-                width=280,
-                style=ft.ButtonStyle(
-                    bgcolor="#FFE597", color="#000000",
-                    shape=ft.RoundedRectangleBorder(radius=25),
-                ),
+            content=ft.Row(
+                [
+                    ft.ElevatedButton(
+                        "🔧  Book a New Service",
+                        on_click=lambda e: navigate("services"),
+                        width=280,
+                        style=ft.ButtonStyle(
+                            bgcolor="#FFE597", color="#000000",
+                            shape=ft.RoundedRectangleBorder(radius=25),
+                        ),
+                    ),
+                ],
+                alignment=ft.MainAxisAlignment.CENTER,
             ),
             padding=ft.padding.symmetric(horizontal=16),
-            alignment=ft.alignment.center,
         ),
         ft.Container(height=16),
         NavBar(page, navigate, active="login"),
