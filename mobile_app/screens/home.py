@@ -8,7 +8,6 @@ def HomeScreen(page, api, state, navigate):
             content=ft.Text(text, size=20, weight=ft.FontWeight.BOLD, color="#333333",
                            text_align=ft.TextAlign.CENTER),
             padding=ft.padding.only(top=16, bottom=8),
-            alignment=ft.alignment.center,
         )
 
     def service_preview_card(emoji, title, desc):
