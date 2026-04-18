@@ -4,23 +4,15 @@ from screens.navbar import NavBar
 def HomeScreen(page, api, state, navigate):
 
     def section_title(text):
-        return ft.Container(
-            content=ft.Text(text, size=20, weight=ft.FontWeight.BOLD, color="#333333",
-                           text_align=ft.TextAlign.CENTER),
-            padding=ft.padding.only(top=16, bottom=8),
+        return ft.Row(
+            [ft.Text(text, size=20, weight=ft.FontWeight.BOLD, color="#333333")],
+            alignment=ft.MainAxisAlignment.CENTER,
         )
 
     def service_preview_card(emoji, title, desc):
         return ft.Container(
             content=ft.Column([
-                ft.Container(
-                    content=ft.Text(emoji, size=28, text_align=ft.TextAlign.CENTER),
-                    bgcolor="#FF8D8D",
-                    border_radius=30,
-                    padding=10,
-                    width=55,
-                    height=55,
-                ),
+                ft.Text(emoji, size=36, text_align=ft.TextAlign.CENTER),
                 ft.Text(title, size=13, weight=ft.FontWeight.BOLD, color="#222222",
                         text_align=ft.TextAlign.CENTER),
                 ft.Text(desc, size=11, color="#555555", text_align=ft.TextAlign.CENTER),
@@ -50,7 +42,6 @@ def HomeScreen(page, api, state, navigate):
     # Combined banner + hero in one container
     combined_header = ft.Container(
         content=ft.Column([
-            # Divider line at top for style
             ft.Container(
                 height=4,
                 bgcolor="#FFE597",
@@ -58,15 +49,12 @@ def HomeScreen(page, api, state, navigate):
                 width=60,
             ),
             ft.Container(height=8),
-            # Car emoji
             ft.Text("🚗", size=50, text_align=ft.TextAlign.CENTER),
-            # Business name
             ft.Text(
                 "Depann Mo Loto",
                 size=30, weight=ft.FontWeight.BOLD,
                 color="white", text_align=ft.TextAlign.CENTER,
             ),
-            # Yellow divider under name
             ft.Container(
                 height=3,
                 bgcolor="#FFE597",
@@ -74,7 +62,6 @@ def HomeScreen(page, api, state, navigate):
                 width=80,
             ),
             ft.Container(height=12),
-            # Tagline
             ft.Text(
                 "Professional Car Servicing\nand Maintenance",
                 size=18, color="#DDDDDD",
@@ -86,7 +73,6 @@ def HomeScreen(page, api, state, navigate):
                 text_align=ft.TextAlign.CENTER,
             ),
             ft.Container(height=20),
-            # CTA Button
             ft.ElevatedButton(
                 "🔧  Book Service Now",
                 on_click=lambda e: navigate("services"),
@@ -97,7 +83,6 @@ def HomeScreen(page, api, state, navigate):
                 width=220,
             ),
             ft.Container(height=8),
-            # Sub text
             ft.Text(
                 "Trusted by thousands across Mauritius",
                 size=11, color="#888888",
@@ -161,7 +146,6 @@ def HomeScreen(page, api, state, navigate):
         location_card("78 Central Flacq\n(+230) 5456 7890", "Flacq Branch"),
         location_card("12 Main Road, Goodlands\n(+230) 5567 8901", "Goodlands Branch"),
     ], alignment=ft.MainAxisAlignment.CENTER, spacing=12)
-
 
     page.add(
         combined_header,
