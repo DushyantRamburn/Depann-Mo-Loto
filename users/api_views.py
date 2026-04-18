@@ -30,14 +30,13 @@ class RegisterAPI(APIView):
     def post(self, request):
         data = request.data
         User = get_user_model()
-        
-        # If user already exists, return error
+
         if User.objects.filter(email=data.get('email')).exists():
             return Response(
                 {'error': 'Email already registered'},
                 status=status.HTTP_400_BAD_REQUEST
             )
-        
+
         user = User.objects.create_user(
             username=data['email'],
             email=data['email'],
@@ -54,33 +53,41 @@ class RegisterAPI(APIView):
         }, status=status.HTTP_201_CREATED)
 
 class BranchLocationsAPI(APIView):
-    """Returns hardcoded branch locations for the map screen"""
+    """Returns branch locations — consumed by both web (jQuery AJAX) and mobile (Flet)"""
     permission_classes = [permissions.AllowAny]
 
     def get(self, request):
         branches = [
             {
-                "name": "Depann Mo Loto - Main Branch",
-                "address": "Port Louis, Mauritius",
+                "name": "Vacoas Branch",
+                "address": "123 Royal Road, Vacoas",
+                "lat": -20.3176,
+                "lng": 57.4845,
+                "phone": "+230 686 1234",
+                "hours": "Mon-Sat 8am-6pm"
+            },
+            {
+                "name": "Port Louis Branch",
+                "address": "456 Sir William Newton Street, Port Louis",
                 "lat": -20.1654,
                 "lng": 57.4896,
-                "phone": "+230 5000-0001",
+                "phone": "+230 212 5678",
                 "hours": "Mon-Sat 8am-6pm"
             },
             {
-                "name": "Depann Mo Loto - Curepipe",
-                "address": "Curepipe, Mauritius",
-                "lat": -20.3176,
-                "lng": 57.5263,
-                "phone": "+230 5000-0002",
-                "hours": "Mon-Sat 8am-6pm"
+                "name": "Flacq Branch",
+                "address": "789 Royal Road, Centre de Flacq",
+                "lat": -20.1833,
+                "lng": 57.7167,
+                "phone": "+230 413 9012",
+                "hours": "Mon-Fri 8am-5pm"
             },
             {
-                "name": "Depann Mo Loto - Rose Hill",
-                "address": "Rose Hill, Mauritius",
-                "lat": -20.2333,
-                "lng": 57.4667,
-                "phone": "+230 5000-0003",
+                "name": "Goodlands Branch",
+                "address": "321 Royal Road, Goodlands",
+                "lat": -19.9833,
+                "lng": 57.6500,
+                "phone": "+230 283 4567",
                 "hours": "Mon-Fri 8am-5pm"
             },
         ]
