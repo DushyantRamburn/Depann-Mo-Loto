@@ -12,35 +12,22 @@
         <p class="contact-text-wrapper-3">Get in touch with our team for all your car servicing needs</p>
       </div>
     </div>
-    
+
     <div class="contact-container-wrapper">
       <div class="contact-container-3">
         <div class="contact-heading"><div class="contact-text-wrapper-4">Our Locations</div></div>
-        <div class="contact-container-4">
-          <div class="contact-background-border">
-            <div class="contact-div-wrapper-2"><div class="contact-text-wrapper-5">Vacoas Branch</div></div>
-            <div class="contact-div-wrapper-2"><div class="contact-text-wrapper-6">123 Royal Road, Vacoas</div></div>
-            <div class="contact-div-wrapper-2"><div class="contact-text-wrapper-7">Tel: +230 686 1234</div></div>
-          </div>
-          <div class="contact-background-border">
-            <div class="contact-div-wrapper-2"><div class="contact-text-wrapper-5">Port Louis Branch</div></div>
-            <div class="contact-div-wrapper-2"><p class="contact-text-wrapper-6">456 Sir William Newton Street, Port Louis</p></div>
-            <div class="contact-div-wrapper-2"><div class="contact-text-wrapper-7">Tel: +230 212 5678</div></div>
-          </div>
-          <div class="contact-background-border">
-            <div class="contact-div-wrapper-2"><div class="contact-text-wrapper-5">Flacq Branch</div></div>
-            <div class="contact-div-wrapper-2"><p class="contact-text-wrapper-6">789 Royal Road, Centre de Flacq</p></div>
-            <div class="contact-div-wrapper-2"><div class="contact-text-wrapper-7">Tel: +230 413 9012</div></div>
-          </div>
-          <div class="contact-background-border">
-            <div class="contact-div-wrapper-2"><div class="contact-text-wrapper-5">Goodlands Branch</div></div>
-            <div class="contact-div-wrapper-2"><div class="contact-text-wrapper-6">321 Royal Road, Goodlands</div></div>
-            <div class="contact-div-wrapper-2"><div class="contact-text-wrapper-7">Tel: +230 283 4567</div></div>
-          </div>
+
+        <!-- AJAX status message -->
+        <p id="ajax-branches-status" style="text-align:center;font-size:13px;"></p>
+
+        <!-- Branch cards loaded dynamically via jQuery AJAX from /api/branches/ -->
+        <div class="contact-container-4" id="ajax-branches-container">
+          <p style="text-align:center;color:#666;padding:20px;">Loading branch locations...</p>
         </div>
+
       </div>
     </div>
-    
+
     <div class="contact-background-border-2">
       <div class="contact-heading-2"><div class="contact-text-wrapper-8">Business Hours</div></div>
       <div class="contact-container-5">
@@ -59,7 +46,7 @@
       </div>
     </div>
   </div>
-  
+
   <footer class="contact-footer">
     <div class="contact-container-8">
       <p class="contact-p">© 2025 Depann Mo Loto. Professional car servicing across Mauritius.</p>
@@ -67,7 +54,3 @@
   </footer>
 </div>
 {% endblock %}
-
-
-
-
