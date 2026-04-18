@@ -70,3 +70,44 @@ class CancelBookingAPI(APIView):
             return Response({'message': 'Booking cancelled'})
         except Booking.DoesNotExist:
             return Response({'error': 'Booking not found'}, status=status.HTTP_404_NOT_FOUND)
+        
+class UpdateBookingAPI(APIView):
+    """Update a booking status"""
+    permission_classes = [permissions.IsAuthenticated]
+
+    def put(self, request, pk):
+        try:
+            booking = Booking.objects.get(pk=pk, user=request.user)
+            new_status = request.data.get('status', booking.status)
+            valid_statuses = ['pending', 'confirmed', 'in_progress', 'completed', 'cancelled']
+            if new_status not in valid_statuses:
+                return Response(
+                    {'error': 'Invalid status'},
+                    status=status.HTTP_400_BAD_REQUEST
+                )
+            booking.status = new_status
+            booking.save()
+            return Response(BookingSerializer(booking).data)
+        except Booking.DoesNotExist:
+            return Response(
+                {'error': 'Booking not found'},
+                status=status.HTTP_404_NOT_FOUND
+            )
+
+class DeleteBookingAPI(APIView):
+    """Delete a booking"""
+    permission_classes = [permissions.IsAuthenticated]
+
+    def delete(self, request, pk):
+        try:
+            booking = Booking.objects.get(pk=pk, user=request.user)
+            booking.delete()
+            return Response(
+                {'message': 'Booking deleted successfully'},
+                status=status.HTTP_204_NO_CONTENT
+            )
+        except Booking.DoesNotExist:
+            return Response(
+                {'error': 'Booking not found'},
+                status=status.HTTP_404_NOT_FOUND
+            )
