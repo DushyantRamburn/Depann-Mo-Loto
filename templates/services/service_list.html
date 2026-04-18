@@ -110,6 +110,15 @@
     text-decoration: none;
 }
 
+/* AJAX status message */
+.ajax-status-msg {
+    text-align: center;
+    padding: 8px;
+    margin-bottom: 10px;
+    font-size: 13px;
+    border-radius: 6px;
+}
+
 /* Why Choose Us Section */
 .why-choose-us {
     background: #f8f9fa;
@@ -173,29 +182,28 @@
     .services-page {
         padding: 15px;
     }
-    
+
     .services-hero h1 {
         font-size: 28px;
     }
-    
+
     .services-hero p {
         font-size: 16px;
     }
-    
+
     .services-grid {
         grid-template-columns: 1fr;
     }
-    
+
     .features-grid {
         grid-template-columns: 1fr;
     }
-    
+
     .service-card {
         padding: 20px;
     }
 }
 
-/* Professional text styling */
 .professional-text {
     font-size: 18px;
     color: #555;
@@ -207,6 +215,7 @@
 </style>
 
 <div class="services-page">
+
     <!-- Main Services Section -->
     <div class="services-hero">
         <h1>Our Services</h1>
@@ -215,108 +224,46 @@
         </p>
     </div>
 
-    <div class="services-grid">
-        <!-- Car Servicing -->
-        <div class="service-card">
-            <div class="service-header">
-                <h3>Car Servicing</h3>
-            </div>
-            <div class="service-description">
-                Complete maintenance services like oil changes, filter replacements, and general inspections to keep your vehicle running smoothly.
-            </div>
-            <div class="service-price">From Rs 2,500</div>
-            <a href="{% url 'bookings:create' %}?service=car_servicing" class="book-now-btn">Book Now</a>
-        </div>
+    <!-- AJAX status message -->
+    <p id="ajax-status" class="ajax-status-msg"></p>
 
-        <!-- Mechanical Repair -->
-        <div class="service-card">
-            <div class="service-header">
-                <h3>Mechanical Repair</h3>
-            </div>
-            <div class="service-description">
-                Expert diagnostic and repair services for engine problems, transmission issues, and other mechanical components.
-            </div>
-            <div class="service-price">From Rs 1,500</div>
-            <a href="{% url 'bookings:create' %}?service=mechanical_repair" class="book-now-btn">Book Now</a>
-        </div>
-
-        <!-- Battery Check -->
-        <div class="service-card">
-            <div class="service-header">
-                <h3>Battery Check</h3>
-            </div>
-            <div class="service-description">
-                Comprehensive battery testing and replacement services to ensure reliable vehicle starting and electrical system performance.
-            </div>
-            <div class="service-price">From Rs 800</div>
-            <a href="{% url 'bookings:create' %}?service=battery_check" class="book-now-btn">Book Now</a>
-        </div>
-
-        <!-- Tyre Replacement -->
-        <div class="service-card">
-            <div class="service-header">
-                <h3>Tyre Replacement</h3>
-            </div>
-            <div class="service-description">
-                Professional tyre installation, balancing, and alignment services with a wide selection of quality tyres for all vehicle types.
-            </div>
-            <div class="service-price">From Rs 3,000</div>
-            <a href="{% url 'bookings:create' %}?service=tyre_replacement" class="book-now-btn">Book Now</a>
-        </div>
-
-        <!-- AC Service -->
-        <div class="service-card">
-            <div class="service-header">
-                <h3>AC Service</h3>
-            </div>
-            <div class="service-description">
-                Air conditioning system diagnostics, cleaning, repair, and gas refilling to ensure optimal cooling performance.
-            </div>
-            <div class="service-price">From Rs 1,200</div>
-            <a href="{% url 'bookings:create' %}?service=ac_service" class="book-now-btn">Book Now</a>
-        </div>
-
-        <!-- Preventive Maintenance -->
-        <div class="service-card">
-            <div class="service-header">
-                <h3>Preventive Maintenance</h3>
-            </div>
-            <div class="service-description">
-                Regular servicing to prevent breakdowns, cleaning, lubrication, adjustments, calibration and software updates (for electronic / IT components).
-            </div>
-            <div class="service-price">From Rs 3,000</div>
-            <a href="{% url 'bookings:create' %}?service=preventive_maintenance" class="book-now-btn">Book Now</a>
-        </div>
+    <!-- Services loaded dynamically via jQuery AJAX from /api/services/ -->
+    <div class="services-grid" id="ajax-services-container">
+        <p style="text-align:center;color:#666;padding:30px;grid-column:1/-1;">
+            Loading services...
+        </p>
     </div>
 
-    <!-- Why Choose Us Section -->
+    <!-- Why Choose Us Section — stays static, no AJAX needed -->
     <div class="why-choose-us">
         <h2>Why Choose Our Services?</h2>
         <div class="features-grid">
             <div class="feature-card">
                 <div class="feature-icon">
-                    <img src="{% static 'c:\Users\Dushyant Ramburn\Django Environment\Depann-Mo-Loto\static\images\certified-technicians-icon.svg' %}" alt="Certified Technicians" />
+                    <img src="{% static 'images/certified-technicians-icon.svg' %}"
+                         alt="Certified Technicians" />
                 </div>
                 <h4>Certified Technicians</h4>
                 <p>Our experienced mechanics are certified and trained to handle all types of vehicle repairs.</p>
             </div>
-
             <div class="feature-card">
                 <div class="feature-icon">
-                    <img src="{% static 'c:\Users\Dushyant Ramburn\Django Environment\Depann-Mo-Loto\static\images\quick-service-icon.svg' %}" alt="Quick Service" />
+                    <img src="{% static 'images/quick-service-icon.svg' %}"
+                         alt="Quick Service" />
                 </div>
                 <h4>Quick Service</h4>
                 <p>Fast and efficient repair services to get you back on the road as quickly as possible.</p>
             </div>
-
             <div class="feature-card">
                 <div class="feature-icon">
-                    <img src="{% static 'c:\Users\Dushyant Ramburn\Django Environment\Depann-Mo-Loto\static\images\quality-guarantee-icon.svg' %}" alt="Quality Guarantee" />
+                    <img src="{% static 'images/quality-guarantee-icon.svg' %}"
+                         alt="Quality Guarantee" />
                 </div>
                 <h4>Quality Guarantee</h4>
                 <p>All repairs come with our quality guarantee and warranty for your peace of mind.</p>
             </div>
         </div>
     </div>
+
 </div>
 {% endblock %}
