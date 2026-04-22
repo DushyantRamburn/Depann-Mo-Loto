@@ -28,7 +28,7 @@ def HomeScreen(page, api, state, navigate):
     def location_card(address, branch):
         return ft.Container(
             content=ft.Column([
-                ft.Text("📍", size=24),
+                ft.Icon(ft.Icons.LOCATION_CITY, size=26, color="#1A1A2E"),
                 ft.Text(branch, size=12, weight=ft.FontWeight.BOLD, color="#333333"),
                 ft.Text(address, size=11, color="#666666", text_align=ft.TextAlign.CENTER),
             ], horizontal_alignment=ft.CrossAxisAlignment.CENTER, spacing=4),
