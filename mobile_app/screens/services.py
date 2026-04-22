@@ -115,7 +115,7 @@ def ServicesScreen(page, api, state, navigate):
     why_us = ft.Container(
         content=ft.Column([
             ft.Text("Why Choose Our Services?",
-                    size=18, weight=ft.FontWeight.BOLD, color="white",
+                    size=22, weight=ft.FontWeight.BOLD, color="#FFE597",
                     text_align=ft.TextAlign.CENTER),
             ft.Container(height=3, bgcolor="#FFE597", border_radius=2, width=60),
             ft.Container(height=16),
