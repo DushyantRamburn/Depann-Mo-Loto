@@ -211,7 +211,7 @@ def ContactScreen(page, api, state, navigate):
                     border_radius=2, width=50,
                 ),
             ], horizontal_alignment=ft.CrossAxisAlignment.CENTER, spacing=8),
-            bgcolor="#1A1A2E",
+            bgcolor="#2A2A4A",
             padding=ft.padding.symmetric(vertical=30, horizontal=16),
         ),
 
