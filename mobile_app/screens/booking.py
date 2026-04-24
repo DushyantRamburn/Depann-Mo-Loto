@@ -17,8 +17,8 @@ def BookingScreen(page, api, state, navigate):
         ],
         value="car", bgcolor="white",
     )
-    date_field = ft.TextField(label="Date (YYYY-MM-DD)", bgcolor="white")
-    time_field = ft.TextField(label="Time (HH:MM)", value="09:00", bgcolor="white")
+    date_field = ft.TextField(label="Date (YYYY-MM-DD)", bgcolor="white", color="#212529")
+    time_field = ft.TextField(label="Time (HH:MM)", value="09:00", bgcolor="white", color="#212529")
     first_name = ft.TextField(label="First Name", bgcolor="white")
     last_name = ft.TextField(label="Last Name", bgcolor="white")
     email = ft.TextField(label="Email", keyboard_type=ft.KeyboardType.EMAIL, bgcolor="white")
