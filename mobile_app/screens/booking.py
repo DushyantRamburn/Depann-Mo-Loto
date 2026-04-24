@@ -97,12 +97,15 @@ def BookingScreen(page, api, state, navigate):
         content_area.controls.append(
             ft.Container(
                 content=ft.Column([
-                    ft.Text("Selected Service", size=14, color="#666666"),
+                    ft.Text("Selected Service", size=14, color="#666666",
+                            text_align=ft.TextAlign.CENTER),
                     ft.Text(service.get("name", ""), size=18,
-                            weight=ft.FontWeight.BOLD, color="#333333"),
+                            weight=ft.FontWeight.BOLD, color="#333333",
+                            text_align=ft.TextAlign.CENTER),
                     ft.Text(f"Rs {service.get('price', '')}", size=16,
-                            weight=ft.FontWeight.BOLD, color="#FFB800"),
-                ]),
+                            weight=ft.FontWeight.BOLD, color="#FFB800",
+                            text_align=ft.TextAlign.CENTER),
+                ], horizontal_alignment=ft.CrossAxisAlignment.CENTER, spacing=4),
                 bgcolor="#D4EDDA", border_radius=10,
                 padding=16, margin=ft.margin.symmetric(horizontal=16),
                 border=ft.border.all(1, "#C3E6CB"),
