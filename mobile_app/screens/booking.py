@@ -3,10 +3,10 @@ import flet as ft
 def BookingScreen(page, api, state, navigate):
     service = state.get("selected_service", {})
 
-    make = ft.TextField(label="Car Make (e.g. Toyota)", bgcolor="white")
-    model = ft.TextField(label="Car Model (e.g. Yaris)", bgcolor="white")
-    year = ft.TextField(label="Year (e.g. 2020)", keyboard_type=ft.KeyboardType.NUMBER, bgcolor="white")
-    plate = ft.TextField(label="License Plate", bgcolor="white")
+    make = ft.TextField(label="Car Make (e.g. Toyota)", bgcolor="white", color="#212529")
+    model = ft.TextField(label="Car Model (e.g. Yaris)", bgcolor="white", color="#212529")
+    year = ft.TextField(label="Year (e.g. 2020)", keyboard_type=ft.KeyboardType.NUMBER, bgcolor="white", color="#212529")
+    plate = ft.TextField(label="License Plate", bgcolor="white", color="#212529")
     vehicle_type = ft.Dropdown(
         label="Vehicle Type",
         options=[
