@@ -32,6 +32,7 @@ def DashboardScreen(page, api, state, navigate):
 
     def booking_card(b):
         s = b.get("status", "pending").upper()
+        border_color = "#FFE597" if s == "PENDING" else "#333355"
         vehicle = b.get("vehicle", {})
         vehicle_str = (
             f"{vehicle.get('make', '')} {vehicle.get('model', '')} "
@@ -71,7 +72,7 @@ def DashboardScreen(page, api, state, navigate):
             border_radius=12,
             padding=16,
             margin=ft.margin.symmetric(horizontal=16, vertical=4),
-            border=ft.border.all(1, "#333355"),
+            border=ft.border.all(1, border_color),
         )
 
     booking_controls = []
