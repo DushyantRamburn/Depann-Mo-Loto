@@ -50,7 +50,7 @@ def ContactScreen(page, api, state, navigate):
                     ),
                     ft.Column([
                         ft.Row([
-                            ft.Text(b["name"], size=15, weight=ft.FontWeight.BOLD,
+                            ft.Text(b["name"], size=16, weight=ft.FontWeight.BOLD,
                                     color="white"),
                             ft.Container(
                                 content=ft.Text("Nearest", size=10,
@@ -66,7 +66,7 @@ def ContactScreen(page, api, state, navigate):
                     ], spacing=2, expand=True),
                 ], spacing=12),
             ]),
-            bgcolor="#2A2A4A" if is_nearest else "#1E1E3A",
+            bgcolor="#2A2A4A" if is_nearest else "#16213E",
             border_radius=12,
             padding=16,
             margin=ft.margin.symmetric(horizontal=16, vertical=4),
@@ -136,7 +136,7 @@ def ContactScreen(page, api, state, navigate):
                 padding=20,
             ),
         ], horizontal_alignment=ft.CrossAxisAlignment.CENTER),
-        bgcolor="#1E1E3A",
+        bgcolor="#16213E",
         border_radius=12,
         padding=16,
         margin=ft.margin.symmetric(horizontal=16, vertical=8),
@@ -165,10 +165,10 @@ def ContactScreen(page, api, state, navigate):
             ft.Row([
                 ft.Text("Sunday", size=13, color="#AAAAAA", expand=True),
                 ft.Text("Emergency Only", size=13,
-                        color="#FF6B6B", weight=ft.FontWeight.BOLD),
+                        color="#FF8C00", weight=ft.FontWeight.BOLD),
             ]),
         ], horizontal_alignment=ft.CrossAxisAlignment.CENTER, spacing=10),
-        bgcolor="#1E1E3A",
+        bgcolor="#16213E",
         border_radius=12,
         padding=20,
         margin=ft.margin.symmetric(horizontal=16, vertical=8),
