@@ -22,7 +22,7 @@ def DashboardScreen(page, api, state, navigate):
 
     def status_bg(status):
         bgs = {
-            "PENDING": "#FFF3CD",
+            "PENDING": "#FFE597",
             "CONFIRMED": "#D4EDDA",
             "IN_PROGRESS": "#D1ECF1",
             "COMPLETED": "#C3E6CB",
@@ -67,7 +67,7 @@ def DashboardScreen(page, api, state, navigate):
                     ),
                 ], spacing=12),
             ]),
-            bgcolor="#1E1E3A",
+            bgcolor="#16213E",
             border_radius=12,
             padding=16,
             margin=ft.margin.symmetric(horizontal=16, vertical=4),
@@ -96,18 +96,35 @@ def DashboardScreen(page, api, state, navigate):
     page.add(
         # Hero banner
         ft.Container(
-            content=ft.Column([
-                ft.Text("👤", size=50, text_align=ft.TextAlign.CENTER),
-                ft.Text(
-                    f"Welcome, {user.get('first_name', 'User')}!",
-                    size=24, weight=ft.FontWeight.BOLD,
-                    color="white", text_align=ft.TextAlign.CENTER,
+        content=ft.Column([
+            ft.Text("👤", size=50, text_align=ft.TextAlign.CENTER),
+            ft.Text(
+                f"Welcome, {user.get('first_name', 'User')}!",
+                size=24, weight=ft.FontWeight.BOLD,
+                color="white", text_align=ft.TextAlign.CENTER,
+            ),
+            ft.Container(height=3, bgcolor="#FFE597", border_radius=2, width=60),
+            ft.Container(height=4),
+            ft.Text(
+                user.get("email", ""),
+                size=13,
+                color="#AAAAAA",
+                text_align=ft.TextAlign.CENTER
+            ),
+            # ✅ NEW BUTTON (shortcut)
+            ft.Container(height=8),
+            ft.Button(
+                "🔧 Book a Service",
+                on_click=lambda e: navigate("services"),
+                width=220,
+                style=ft.ButtonStyle(
+                    bgcolor="#FFE597",
+                    color="#000000",
+                    shape=ft.RoundedRectangleBorder(radius=20),
                 ),
-                ft.Container(height=3, bgcolor="#FFE597", border_radius=2, width=60),
-                ft.Container(height=4),
-                ft.Text(user.get("email", ""), size=13,
-                        color="#AAAAAA", text_align=ft.TextAlign.CENTER),
-            ], horizontal_alignment=ft.CrossAxisAlignment.CENTER, spacing=6),
+            ),
+
+    ], horizontal_alignment=ft.CrossAxisAlignment.CENTER, spacing=6),
             bgcolor="#1A1A2E",
             padding=ft.padding.symmetric(vertical=30, horizontal=16),
         ),
@@ -150,7 +167,7 @@ def DashboardScreen(page, api, state, navigate):
                     ),
                 ),
             ], horizontal_alignment=ft.CrossAxisAlignment.CENTER, spacing=10),
-            bgcolor="#1E1E3A",
+            bgcolor="#16213E",
             border_radius=12,
             padding=20,
             margin=ft.margin.symmetric(horizontal=16, vertical=12),
