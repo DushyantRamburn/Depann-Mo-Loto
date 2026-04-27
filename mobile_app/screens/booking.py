@@ -257,7 +257,13 @@ def BookingScreen(page, api, state, navigate):
                 content=ft.Column([
                     ft.Text("✅", size=50, text_align=ft.TextAlign.CENTER),
                     ft.Text("Booking Confirmed!", size=22, weight=ft.FontWeight.BOLD,
-                            color="#28A745", text_align=ft.TextAlign.CENTER),
+                            color="#FFE597", text_align=ft.TextAlign.CENTER),
+                    ft.Text(
+                        "🎉 Congratulations! Your service has been successfully booked.",
+                        size=13,
+                        color="#FFE597",
+                        text_align=ft.TextAlign.CENTER
+                    ),
                     ft.Text(f"Reference: #{booking.get('id', '')}",
                             size=14, color="#666666", text_align=ft.TextAlign.CENTER),
                     ft.Divider(color="#E9ECEF"),
