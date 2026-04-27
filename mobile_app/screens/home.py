@@ -18,11 +18,11 @@ def HomeScreen(page, api, state, navigate):
                 ft.Text(desc, size=11, color="#555555", text_align=ft.TextAlign.CENTER),
             ], spacing=8, horizontal_alignment=ft.CrossAxisAlignment.CENTER),
             bgcolor="white",
-            border_radius=12,
+            border_radius=20,
             padding=16,
             width=175,
             height=160,
-            border=ft.border.all(2, "#E9ECEF"),
+            border=ft.border.all(2, "#FFE597"),
         )
 
     def location_card(address, branch):
@@ -35,7 +35,7 @@ def HomeScreen(page, api, state, navigate):
             bgcolor="white",
             border_radius=10,
             padding=16,
-            border=ft.border.all(1, "#E9ECEF"),
+            border=ft.border.all(1, "#FFE597"),
             width=175,
         )
 
@@ -64,7 +64,7 @@ def HomeScreen(page, api, state, navigate):
             ft.Container(height=12),
             ft.Text(
                 "Professional Car Servicing\nand Maintenance",
-                size=18, color="#DDDDDD",
+                size=26, color="#DDDDDD",
                 text_align=ft.TextAlign.CENTER,
             ),
             ft.Text(
@@ -79,6 +79,7 @@ def HomeScreen(page, api, state, navigate):
                 style=ft.ButtonStyle(
                     bgcolor="#FFE597", color="#000000",
                     shape=ft.RoundedRectangleBorder(radius=25),
+                    padding=20
                 ),
                 width=220,
             ),
@@ -89,7 +90,7 @@ def HomeScreen(page, api, state, navigate):
                 text_align=ft.TextAlign.CENTER,
             ),
         ], horizontal_alignment=ft.CrossAxisAlignment.CENTER, spacing=6),
-        bgcolor="#1A1A2E",
+        bgcolor="#16213E",
         padding=ft.padding.symmetric(horizontal=20, vertical=40),
     )
 
@@ -131,7 +132,7 @@ def HomeScreen(page, api, state, navigate):
                 ),
             ], alignment=ft.MainAxisAlignment.CENTER),
         ], horizontal_alignment=ft.CrossAxisAlignment.CENTER),
-        bgcolor="#1A1A2E",
+        bgcolor="#16213E",
         padding=24,
         margin=ft.margin.symmetric(horizontal=16, vertical=8),
         border_radius=12,
