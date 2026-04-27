@@ -8,7 +8,7 @@ def LoginScreen(page, api, state, navigate):
         bgcolor="white",
         border_color="#FFE597",
         focused_border_color="#FFE597",
-        label_style=ft.TextStyle(color="#AAAAAA"),
+        label_style=ft.TextStyle(color="#313131"),
         width=320,
     )
     password_field = ft.TextField(
@@ -18,7 +18,7 @@ def LoginScreen(page, api, state, navigate):
         bgcolor="white",
         border_color="#FFE597",
         focused_border_color="#FFE597",
-        label_style=ft.TextStyle(color="#AAAAAA"),
+        label_style=ft.TextStyle(color="#313131"),
         width=320,
     )
     error_text = ft.Text("", color="#FF6B6B", size=13,
