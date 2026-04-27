@@ -176,7 +176,7 @@ def BookingScreen(page, api, state, navigate):
             ft.Container(
                 content=ft.Column([
                     ft.Text("Your Details", size=20, weight=ft.FontWeight.BOLD,
-                            color="#333333", text_align=ft.TextAlign.CENTER),
+                            color="#1A1A1A", text_align=ft.TextAlign.CENTER),
                     ft.Divider(color="#E9ECEF"),
                     first_name,
                     last_name,
