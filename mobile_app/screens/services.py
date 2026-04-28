@@ -71,7 +71,7 @@ def ServicesScreen(page, api, state, navigate):
                 ),
             ]),
             bgcolor="white",
-            border_radius=12,
+            border_radius=25,
             padding=20,
             margin=ft.margin.symmetric(horizontal=16, vertical=6),
             border=ft.border.only(
