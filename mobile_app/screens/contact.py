@@ -165,7 +165,7 @@ def ContactScreen(page, api, state, navigate):
             ft.Row([
                 ft.Text("Sunday", size=13, color="#AAAAAA", expand=True),
                 ft.Text("Emergency Only", size=13,
-                        color="#FF8C00", weight=ft.FontWeight.BOLD),
+                        color="#FC0C0C", weight=ft.FontWeight.BOLD),
             ]),
         ], horizontal_alignment=ft.CrossAxisAlignment.CENTER, spacing=10),
         bgcolor="#16213E",
