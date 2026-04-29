@@ -118,7 +118,7 @@ def HomeScreen(page, api, state, navigate):
             ft.Text(
                 "With years of experience in automotive repair and maintenance, "
                 "we provide reliable, professional service to keep your vehicle running smoothly.",
-                size=13, color="#CCCCCC", text_align=ft.TextAlign.CENTER,
+                size=14, color="#CCCCCC", text_align=ft.TextAlign.CENTER,
             ),
             ft.Container(height=12),
             ft.Row([
