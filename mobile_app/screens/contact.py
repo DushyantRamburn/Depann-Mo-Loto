@@ -145,7 +145,7 @@ def ContactScreen(page, api, state, navigate):
 
     hours_card = ft.Container(
         content=ft.Column([
-            ft.Text("🕐  Business Hours", size=16,
+            ft.Text("🕐  Business Hours", size=18,
                     weight=ft.FontWeight.BOLD, color="white",
                     text_align=ft.TextAlign.CENTER),
             ft.Container(height=3, bgcolor="#FFE597", border_radius=2, width=60),
