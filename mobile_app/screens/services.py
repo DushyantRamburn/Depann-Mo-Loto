@@ -69,12 +69,10 @@ def ServicesScreen(page, api, state, navigate):
                     ),
                     width=320,
                 ),
-            ], horizontal_alignment=ft.CrossAxisAlignment.CENTER),
+            ]),
             bgcolor="white",
             border_radius=13,
             padding=20,
-            width=360,
-            alignment=ft.alignment.center,
             margin=ft.margin.symmetric(vertical=6),
             border=ft.border.only(
                 left=ft.BorderSide(4, "#FFE597"),
@@ -136,13 +134,7 @@ def ServicesScreen(page, api, state, navigate):
     page.add(
         hero,
         ft.Container(height=8),
-        *[
-            ft.Container(
-                content=service_card(s),
-                alignment=ft.alignment.center,
-            )
-            for s in services_data
-        ],
+        *[service_card(s) for s in services_data],
         ft.Container(height=8),
         why_us,
         ft.Container(height=16),
