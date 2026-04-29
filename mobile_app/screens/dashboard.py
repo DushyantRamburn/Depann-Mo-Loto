@@ -12,7 +12,7 @@ def DashboardScreen(page, api, state, navigate):
 
     def status_color(status):
         colors = {
-            "PENDING": "#856404",
+            "PENDING": "#745804",
             "CONFIRMED": "#155724",
             "IN_PROGRESS": "#0c5460",
             "COMPLETED": "#28A745",
@@ -22,7 +22,7 @@ def DashboardScreen(page, api, state, navigate):
 
     def status_bg(status):
         bgs = {
-            "PENDING": "#FFE597",
+            "PENDING": "#F8DB84",
             "CONFIRMED": "#D4EDDA",
             "IN_PROGRESS": "#D1ECF1",
             "COMPLETED": "#C3E6CB",
