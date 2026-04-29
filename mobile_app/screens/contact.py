@@ -180,7 +180,7 @@ def ContactScreen(page, api, state, navigate):
         ft.Container(
             content=ft.Column([
                 ft.Text("📍", size=50, text_align=ft.TextAlign.CENTER),
-                ft.Text("Contact Us", size=26, weight=ft.FontWeight.BOLD,
+                ft.Text("Contact Us", size=28, weight=ft.FontWeight.BOLD,
                         color="white", text_align=ft.TextAlign.CENTER),
                 ft.Container(height=3, bgcolor="#FFE597", border_radius=2, width=60),
                 ft.Container(height=6),
